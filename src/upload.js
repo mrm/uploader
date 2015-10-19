@@ -359,6 +359,10 @@
         creativeStore.setValidSizes(options.sizes);
         creativeStore.setCreativesEndpoint(options.url);
 
+        if (options.maxFileSize) {
+            creativeStore.setMaxFileSize(options.maxFileSize);
+        }
+
         if (options.onNewCreatives) {
             creativeStore.addNewCreativesListener(options.onNewCreatives);
         }

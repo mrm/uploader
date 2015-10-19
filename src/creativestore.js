@@ -7,6 +7,11 @@
             key: 0,
             showingInvalid: false,
             endpoint: '',
+            maxFileSize: 40,
+
+            setMaxFileSize: function (sizeInBytes) {
+                this.maxFileSize = sizeInBytes;
+            },
 
             addChangeListener: function (listener) {
                 this.listeners.push(listener);
@@ -178,8 +183,8 @@
                         creative.permanentlyInvalid = true;
                     }
 
-                    if (creative.filesize > 40 * 1024) {
-                        this.setInvalid(creative, 'Creative filesize too large, max 40KB!');
+                    if (creative.filesize > this.maxFileSize) {
+                        this.setInvalid(creative, 'Creative filesize too large, max ' + this.getHumanFileSize(this.maxFileSize)  + '!');
                     }
 
                     creative.filesize = this.getHumanFileSize(creative.filesize);
