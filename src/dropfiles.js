@@ -91,6 +91,12 @@ $(function () {
             });
         }
     }
+    
+    function processFiles(files) {
+        for (var i = 0; i < files.length; i++) {
+            processFile(files[i]);
+        }
+    }
 
     function processFile(file) {
         uploader.store().addFile(file);
