@@ -184,6 +184,7 @@
                     }
 
                     if (creative.filesize > this.maxFileSize) {
+                        creative.permanentlyInvalid = true;
                         this.setInvalid(creative, 'Creative filesize too large, max ' + this.getHumanFileSize(this.maxFileSize)  + '!');
                     }
 
