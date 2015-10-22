@@ -278,7 +278,7 @@
                 { this.shouldShowButtonFor('file') ?
                     <a className="btn btn-primary btn-sm" href="javascript:void(0);" tabIndex="-1">
                         <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Add banner files
-                        <input id="fileinput" name="file[]" type="file" multiple="multiple" accept="image/*,application/x-shockwave-flash" onChange={this.props.handleUpload} />
+                        <input id="fileinput" name="file[]" type="file" multiple="multiple" accept="image/*" onChange={this.props.handleUpload} />
                     </a>
                 : false}
 

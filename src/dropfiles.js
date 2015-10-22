@@ -6,7 +6,7 @@ $(function () {
 
     dragoverlay = $('<div id="dragoverlay"></div>').append(
         $('<h1>Drop banner files to upload</h1>'),
-        $('<p>Supported file types: <span id="da-images"></span> image files, <span id="da-flash"></span> Adobe Flash files.</p>')
+        $('<p>Supported file types: <span id="da-images"></span> image files.</p>')
     ).appendTo(document.body);
 
 
@@ -91,7 +91,7 @@ $(function () {
             });
         }
     }
-    
+
     function processFiles(files) {
         for (var i = 0; i < files.length; i++) {
             processFile(files[i]);
