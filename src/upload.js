@@ -318,6 +318,7 @@
 
         handleUpload: function (e) {
             creativeStore.handleUpload(e.target);
+            e.target.value = "";
         },
 
         addFileCreative: function (file) {

@@ -2,6 +2,7 @@
     window.createCreativeStore = function () {
         return {
             listeners: [],
+            newCreativeListeners: [],
             creatives: [],
             defaultClickUrl: 'http://',
             key: 0,
