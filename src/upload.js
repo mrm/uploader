@@ -52,7 +52,7 @@
             return (
                 <tr>
                     <td>
-                        <img src={'/img/creatives/content-' + this.props.data.type + '.png'}></img>
+                        <img src={'/img/creatives/content-' + this.props.data.type.toLowerCase() + '.png'}></img>
                         <select style={{verticalAlign: 'top'}} name="type" onChange={this.onChangeType}>
                             <option>HTML</option>
                             <option>Javascript</option>

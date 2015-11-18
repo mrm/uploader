@@ -341,6 +341,10 @@
                     delete creative.clickUrl;
                 }
 
+                if (creative.type == 'javascript') {
+                    creative.type = 'js';
+                }
+
                 var sizes = creative.size.split('x');
                 creative.width = sizes[0];
                 creative.height = sizes[1];
@@ -406,6 +410,7 @@
 
                     if (creatives.length > 0) {
                         this.postToBackend(creatives);
+                        this.showInvalidCreatives();
                     }
                 }
             }
