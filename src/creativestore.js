@@ -223,7 +223,7 @@
             },
 
             validate: function (creative) {
-                if (creative.content_type !== 'popup' && !this.isValidSize(creative.size)) {
+                if (creative.type !== 'popup' && !this.isValidSize(creative.size)) {
                     this.setInvalid(creative, 'Incorrect creative dimensions!');
                     return;
                 }

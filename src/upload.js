@@ -17,10 +17,10 @@
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {this.props.data.reason}</div> : ''}</td>
+                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><em className="fa fa-exclamation-triangle" aria-hidden="true"></em> {this.props.data.reason}</div> : ''}</td>
                     <td>
                         <button className="remove btn btn-danger" title="Remove this banner" onClick={this.props.removeCreative.bind(null, this.props.data.id)}>
-                            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <em className="fa fa-trash" aria-hidden="true"></em>
                         </button>
                     </td>
                 </tr>
@@ -69,10 +69,10 @@
                             {this.getAllowedSizes()}
                         </select>
                     </td>
-                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {this.props.data.reason}</div> : ''}</td>
+                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><em className="fa fa-exclamation-triangle" aria-hidden="true"></em> {this.props.data.reason}</div> : ''}</td>
                     <td>
                         <button className="remove btn btn-danger" title="Remove this banner" onClick={this.props.removeCreative.bind(null, this.props.data.id)}>
-                            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <em className="fa fa-trash" aria-hidden="true"></em>
                         </button>
                     </td>
                 </tr>
@@ -121,10 +121,10 @@
                             {this.getAllowedSizes()}
                         </select>
                     </td>
-                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {this.props.data.reason}</div> : ''}</td>
+                    <td>{ this.props.data.showErrors && this.props.data.state == 'invalid' ? <div className="alert alert-danger"><em className="fa fa-exclamation-triangle" aria-hidden="true"></em> {this.props.data.reason}</div> : ''}</td>
                     <td>
                         <button className="remove btn btn-danger" title="Remove this banner" onClick={this.props.removeCreative.bind(null, this.props.data.id)}>
-                            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <em className="fa fa-trash" aria-hidden="true"></em>
                         </button>
                     </td>
                 </tr>
@@ -150,7 +150,7 @@
                 return (
                     <div className="form-group has-error has-feedback">
                         <input ref="clickUrl" type="text" className="clickurl form-control default" aria-describedby="inputError" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl} />
-                        <span className="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <em className="fa fa-exclamation-triangle form-control-feedback" aria-hidden="true"></em>
                         <span id="inputError" className="sr-only">(error)</span>
                     </div>
                 );
@@ -181,7 +181,7 @@
                     </td>
                     <td>
                         <button className="remove btn btn-danger" title="Remove this banner" onClick={this.props.removeCreative.bind(null, this.props.data.id)}>
-                            <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <em className="fa fa-trash" aria-hidden="true"></em>
                         </button>
                     </td>
                 </tr>
@@ -261,8 +261,8 @@
 
         onPopCreative: function (e) {
             this.props.addCreative({
-                content_type: 'popup',
-                type: 'html',
+                content_type: 'url',
+                type: 'popup',
                 size: '800x600'
             });
 
@@ -277,26 +277,26 @@
                 <p id="uploaders">
                 { this.shouldShowButtonFor('file') ?
                     <a className="btn btn-primary btn-sm" href="javascript:void(0);" tabIndex="-1">
-                        <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Add banner files
+                        <em className="fa fa-plus" aria-hidden="true"></em> Add banner files
                         <input id="fileinput" name="file[]" type="file" multiple="multiple" accept="image/*" onChange={this.props.handleUpload} />
                     </a>
                 : false}
 
                 { this.shouldShowButtonFor('url') ?
                     <a className="btn btn-primary btn-sm" href="javascript:void(0);" onClick={this.onUrlCreative}>
-                        <span className="glyphicon glyphicon-plus" aria-hidden="true" ></span> Add a JS or iframe URL
+                        <em className="fa fa-plus" aria-hidden="true"></em> Add a JS or iframe URL
                     </a>
                 : false}
 
                 { this.shouldShowButtonFor('content') ?
                     <a className="btn btn-primary btn-sm" href="javascript:void(0);" onClick={this.onContentCreative}>
-                        <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a JS or HTML script
+                        <em className="fa fa-plus" aria-hidden="true"></em> Add a JS or HTML script
                     </a>
                 : false}
 
                 { this.shouldShowButtonFor('popup') ?
                     <a className="btn btn-primary btn-sm" href="javascript:void(0);" onClick={this.onPopCreative}>
-                        <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Add a popup/popunder URL
+                        <em className="fa fa-plus" aria-hidden="true"></em> Add a popup/popunder URL
                     </a>
                 : false}
 
