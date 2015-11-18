@@ -205,11 +205,14 @@
                     case 'file':
                         return <ImageCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative}/>;
                     case 'url':
-                        return <UrlCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} allowedSizes={allowedSizes} />;
+                        if (creative.type == 'popup') {
+                            return <PopCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} />;
+                        }
+                        else {
+                            return <UrlCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} allowedSizes={allowedSizes} />;
+                        }
                     case 'content':
                         return <ContentCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} allowedSizes={allowedSizes} />;
-                    case 'popup':
-                        return <PopCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} />;
                     default:
                         return <tr><td>Unknown Creative Type</td></tr>;
                 }
