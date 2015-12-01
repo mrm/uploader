@@ -107,7 +107,7 @@
                         <img src={'/img/creatives/url-' + this.props.data.type.toLowerCase() + '.png'}></img>
                         <select style={{verticalAlign: 'top'}} name="type" onChange={this.onChangeType}>
                             <option value="html">iFrame</option>
-                            <option>Javascript</option>
+                            <option value="js">Javascript</option>
                         </select>
                     </td>
                     <td>
