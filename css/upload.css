@@ -282,6 +282,13 @@ text-overflow: ellipsis;
 box-shadow: none;
 }
 
+#creatives .mopuptext {
+  color: #888;
+  border-color: #ddd;
+  height: 100px;
+  resize: none;
+}
+
 #creatives .remove {
 padding: 8px 8px 2px;
 }
