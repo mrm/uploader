@@ -133,8 +133,13 @@
     });
 
     var ImageCreative = React.createClass({
+
         onChangeClickUrl: function (e) {
             this.props.updateCreative(this.props.data.id, { clickUrl: e.target.value });
+        },
+
+        onChangeMopupText: function (e) {
+            this.props.updateCreative(this.props.data.id, { mopup: e.target.value });
         },
 
         _isInvalidCreative: function () {
@@ -152,13 +157,15 @@
                         <input ref="clickUrl" type="text" className="clickurl form-control default" aria-describedby="inputError" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl} />
                         <em className="fa fa-exclamation-triangle form-control-feedback" aria-hidden="true"></em>
                         <span id="inputError" className="sr-only">(error)</span>
+                        { this.props.mopupAllowed != -1 ? <textarea ref="mopup" className="mopuptext form-control default" type="text" placeholder="Optional: place mopup text here, leave empty for regular banner campaign" value={this.props.data.mopup} name="mopup" onChange={this.onChangeMopupText} /> : '' }
                     </div>
                 );
             }
 
             return (
                 <div className="form-group">
-                    <input ref="clickUrl" className="clickurl form-control default" type="text" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl}/>
+                    <input ref="clickUrl" className="clickurl form-control default" type="text" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl} />
+                    { this.props.mopupAllowed != -1 ? <textarea ref="mopup" className="mopuptext form-control default" type="text" placeholder="Optional: place mopup text here, leave empty for regular banner campaign" value={this.props.data.mopup} name="mopup" onChange={this.onChangeMopupText} /> : '' }
                 </div>
             );
         },
@@ -199,11 +206,12 @@
             }
 
             allowedSizes = this.props.allowedSizes;
+            allowedTypes = this.props.allowedTypes;
 
             var creatives = this.props.creatives.map(function (creative) {
                 switch (creative.content_type) {
                     case 'file':
-                        return <ImageCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative}/>;
+                        return <ImageCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} mopupAllowed={_.indexOf(allowedTypes, 'mopup')} />;
                     case 'url':
                         if (creative.type == 'popup') {
                             return <PopCreative key={creative.id} data={creative} removeCreative={removeCreative} updateCreative={updateCreative} />;
@@ -349,7 +357,7 @@
                 <div>
                     <DefaultUrl updateDefaultClickUrl={this.updateDefaultClickUrl} />
                     <UploadButtons allowedTypes={this.props.allowedTypes} handleUpload={this.handleUpload} addCreative={this.addCreative}/>
-                    <CreativeList creatives={this.state.creatives} removeCreative={this.removeCreative} updateCreative={this.updateCreative} allowedSizes={this.props.allowedSizes} />
+                    <CreativeList creatives={this.state.creatives} removeCreative={this.removeCreative} updateCreative={this.updateCreative} allowedSizes={this.props.allowedSizes} allowedTypes={this.props.allowedTypes} />
                 </div>
             );
         },
