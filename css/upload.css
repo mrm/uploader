@@ -290,7 +290,8 @@ box-shadow: none;
 }
 
 #creatives .remove {
-padding: 8px 8px 2px;
+font-size: 15px;
+padding: 7px 10px 4px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.25), (-o-min-device-pixel-ratio: 5/4), (min-resolution: 120dpi), (min-resolution: 1.5dppx) {
