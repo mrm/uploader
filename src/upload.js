@@ -47,6 +47,20 @@
                 return <option key={size} value={size}>{size}</option>;
             });
         },
+        shouldShowWarning: function () {
+            var content = this.props.data.content;
+            if (content) {
+                if (this.props.data.type.toLowerCase() == 'javascript') {
+                    return content.trim().charAt(0) == '<';
+                }
+                else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        },
 
         render: function() {
             return (
@@ -59,7 +73,8 @@
                         </select>
                     </td>
                     <td>
-                        <textarea className="form-control" rows="7" cols="40" onChange={this.onChangeContent}></textarea>
+                        <textarea className="form-control" rows="7" cols="40" onChange={this.onChangeContent} onBlur={this.onFocusLost}></textarea>
+                        { this.shouldShowWarning() ? <div className="alert alert-warning" role="alert">It appears that you are uploading an HTML banner instead of Javascript, please change the content type to HTML.</div> : false}
                         <span className="clicktrackinginfo">Use the macro <code>${'{CLICKURL}'}</code> to enable click tracking</span>
                     </td>
                     <td>&nbsp;</td>
