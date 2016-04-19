@@ -49,17 +49,12 @@
         },
         shouldShowWarning: function () {
             var content = this.props.data.content;
-            if (content) {
-                if (this.props.data.type.toLowerCase() == 'javascript') {
-                    return content.trim().charAt(0) == '<';
-                }
-                else {
-                    return false;
-                }
+            
+            if (content && this.props.data.type.toLowerCase() == 'javascript') {
+                return content.trim().charAt(0) == '<';
             }
-            else {
-                return false;
-            }
+
+            return false;
         },
 
         render: function() {
