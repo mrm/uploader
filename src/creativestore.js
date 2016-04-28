@@ -9,6 +9,7 @@
             showingInvalid: false,
             endpoint: '',
             maxFileSize: 40,
+            showDefault: false,
 
             setMaxFileSize: function (sizeInBytes) {
                 this.maxFileSize = sizeInBytes;
@@ -180,6 +181,8 @@
                 this.validate(creative);
 
                 if (creative.content_type == 'file') {
+                    this.showDefault = true;
+
                     if (!this.isValidSize(creative.size)) {
                         creative.permanentlyInvalid = true;
                     }
@@ -209,10 +212,16 @@
             },
 
             remove: function (id) {
+                this.showDefault = false;
                 var index = this.find(id);
-
+                
                 if (index !== -1) {
                     this.creatives.splice(index, 1);
+                }
+                for (var i = 0; i < this.creatives.length; i++) {
+                    if (this.creatives[i].content_type == 'file') {
+                        this.showDefault = true;
+                    }
                 }
 
                 this.notifyListeners();

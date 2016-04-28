@@ -255,12 +255,14 @@
 
         render: function () {
             return (
+                creativeStore.showDefault ?
                 <div id="section-clickurl">
                     <div className="form-group">
                         <label htmlFor="clickurl">Default Click URL for all banners <span style={{fontWeight: 'normal'}}>(optional)</span></label>
                         <input id="clickurl" className="form-control" type="text" name="url" size="50" defaultValue="http://" onChange={this.update} />
                     </div>
                 </div>
+                : false
             );
         }
     });
