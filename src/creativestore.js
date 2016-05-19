@@ -4,6 +4,8 @@
             listeners: [],
             newCreativeListeners: [],
             creatives: [],
+            maxCreatives: 5,
+            maxCreativesIsStrict: true,
             defaultClickUrl: 'http://',
             key: 0,
             showingInvalid: false,
@@ -37,6 +39,14 @@
 
             setCreativesEndpoint: function (url) {
                 this.endpoint = url;
+            },
+
+            setMaxCreatives: function (max) {
+                this.maxCreatives = max;
+            },
+
+            setMaxCreativesIsStrict: function (isStrict) {
+                this.maxCreativesIsStrict = isStrict;
             },
 
             setDefaultClickUrl: function (url) {
@@ -214,7 +224,7 @@
             remove: function (id) {
                 this.showDefault = false;
                 var index = this.find(id);
-                
+
                 if (index !== -1) {
                     this.creatives.splice(index, 1);
                 }
@@ -317,7 +327,23 @@
                     return c;
                 });
 
-                return { creatives: creatives };
+                return {
+                    creatives: creatives,
+                    maxCreativesMessage: this.getMaxCreativesMessage()
+                };
+            },
+
+            getMaxCreativesMessage: function () {
+                if (this.maxCreatives < this.creatives.length) {
+                    if (this.maxCreativesIsStrict)
+                        return "Note that with your budget you can only upload: " + this.maxCreatives + " creatives. " +
+                        "Please remove " + (this.creatives.length - this.maxCreatives) + " creatives before continuing!";
+                    else
+                        return "Please note that you are nearing your creatives quota (1 creative per $10 of budget). " +
+                        'Read more about our quota\'s <a href="https://adperium.com/faq#quotas" target="blank">here.</a>';
+                }
+
+                return false;
             },
 
             setInvalid: function (creative, reason) {

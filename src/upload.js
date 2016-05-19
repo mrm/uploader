@@ -49,7 +49,7 @@
         },
         shouldShowWarning: function () {
             var content = this.props.data.content;
-            
+
             if (content && this.props.data.type.toLowerCase() == 'javascript') {
                 return content.trim().charAt(0) == '<';
             }
@@ -330,6 +330,18 @@
         }
     });
 
+    var WarningMessage = React.createClass({
+        render: function () {
+            return (
+                <div>
+                    { this.props.message ?
+                        <div className="alert alert-warning" role="alert" dangerouslySetInnerHTML={{ __html: this.props.message}}></div>
+                    : false}
+                </div>
+            );
+        }
+    });
+
     var CreativeControl = React.createClass({
         getInitialState: function() {
             return creativeStore.getState();
@@ -367,6 +379,7 @@
         render: function () {
             return (
                 <div>
+                    <WarningMessage message={this.state.maxCreativesMessage} />
                     <DefaultUrl updateDefaultClickUrl={this.updateDefaultClickUrl} />
                     <UploadButtons allowedTypes={this.props.allowedTypes} handleUpload={this.handleUpload} addCreative={this.addCreative}/>
                     <CreativeList creatives={this.state.creatives} removeCreative={this.removeCreative} updateCreative={this.updateCreative} allowedSizes={this.props.allowedSizes} allowedTypes={this.props.allowedTypes} />
@@ -389,6 +402,10 @@
 
         if (options.onNewCreatives) {
             creativeStore.addNewCreativesListener(options.onNewCreatives);
+        }
+
+        if (options.maxBannersBeforeWarning) {
+            creativeStore.setMaxCreatives(options.maxBannersBeforeWarning);
         }
 
         var control = React.render(
