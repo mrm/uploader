@@ -350,7 +350,7 @@
                     }
                     else
                         return "Please note that you are nearing your creatives quota (1 creative per $10 of budget). " +
-                        'Read more about our quota\'s <a href="https://adperium.com/faq#quotas" target="blank">here.</a>';
+                        'Read more about our quotas <a href="https://adperium.com/faq#quotas" target="blank">here.</a>';
                 }
 
                 return false;
