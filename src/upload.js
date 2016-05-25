@@ -331,11 +331,14 @@
     });
 
     var WarningMessage = React.createClass({
+        getClasses: function () {
+            return "alert alert-" + this.props.type;
+        },
         render: function () {
             return (
                 <div>
                     { this.props.message ?
-                        <div className="alert alert-warning" role="alert" dangerouslySetInnerHTML={{ __html: this.props.message}}></div>
+                        <div className={this.getClasses()} role="alert" dangerouslySetInnerHTML={{ __html: this.props.message}}></div>
                     : false}
                 </div>
             );
@@ -379,7 +382,7 @@
         render: function () {
             return (
                 <div>
-                    <WarningMessage message={this.state.maxCreativesMessage} />
+                    <WarningMessage message={this.state.maxCreativesMessage} type={this.state.maxCreativesType} />
                     <DefaultUrl updateDefaultClickUrl={this.updateDefaultClickUrl} />
                     <UploadButtons allowedTypes={this.props.allowedTypes} handleUpload={this.handleUpload} addCreative={this.addCreative}/>
                     <CreativeList creatives={this.state.creatives} removeCreative={this.removeCreative} updateCreative={this.updateCreative} allowedSizes={this.props.allowedSizes} allowedTypes={this.props.allowedTypes} />
@@ -404,9 +407,11 @@
             creativeStore.addNewCreativesListener(options.onNewCreatives);
         }
 
-        if (options.maxBannersBeforeWarning) {
-            creativeStore.setMaxCreatives(options.maxBannersBeforeWarning);
+        if (options.maxCreatives) {
+            creativeStore.setMaxCreatives(options.maxCreatives);
         }
+
+        creativeStore.setMaxCreativesIsStrict(!!options.maxCreativesIsStrict);
 
         var control = React.render(
             <CreativeControl allowedSizes={options.sizes} allowedTypes={options.types}/>,

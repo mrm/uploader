@@ -4,8 +4,8 @@
             listeners: [],
             newCreativeListeners: [],
             creatives: [],
-            maxCreatives: 5,
-            maxCreativesIsStrict: true,
+            maxCreatives: 0,
+            maxCreativesIsStrict: false,
             defaultClickUrl: 'http://',
             key: 0,
             showingInvalid: false,
@@ -329,15 +329,25 @@
 
                 return {
                     creatives: creatives,
+                    maxCreativesType: this.maxCreativesIsStrict ? 'danger' : 'warning',
                     maxCreativesMessage: this.getMaxCreativesMessage()
                 };
             },
 
+            hasReachedCreativesQuota: function ()
+            {
+                return (this.maxCreatives < this.creatives.length);
+            },
+
             getMaxCreativesMessage: function () {
-                if (this.maxCreatives < this.creatives.length) {
-                    if (this.maxCreativesIsStrict)
-                        return "Note that with your budget you can only upload: " + this.maxCreatives + " creatives. " +
-                        "Please remove " + (this.creatives.length - this.maxCreatives) + " creatives before continuing!";
+                if (this.hasReachedCreativesQuota()) {
+                    if (this.maxCreativesIsStrict) {
+                        var creative = function (amount) { return (amount == 1) ? 'creative' : 'creatives'; }
+                        var shouldRemove = this.creatives.length - this.maxCreatives;
+
+                        return "<strong>Note:</strong> that with your budget you can only upload <strong>" + this.maxCreatives + "</strong> " +
+                        creative(this.maxCreatives) + ". Please remove " + shouldRemove + " " + creative(shouldRemove) + " before continuing!";
+                    }
                     else
                         return "Please note that you are nearing your creatives quota (1 creative per $10 of budget). " +
                         'Read more about our quota\'s <a href="https://adperium.com/faq#quotas" target="blank">here.</a>';
@@ -436,6 +446,10 @@
                 this.removeInvalidImageCreatives();
                 var self = this;
 
+                if (this.hasReachedCreativesQuota() && this.maxCreativesIsStrict) {
+                    return;
+                }
+
                 if (!this.hasOnlyValidCreatives()) {
                     this.showInvalidCreatives();
                 } else {
@@ -446,6 +460,9 @@
                     if (creatives.length > 0) {
                         this.postToBackend(creatives);
                         this.showInvalidCreatives();
+
+                        var left = this.maxCreatives - creatives.length;
+                        this.maxCreatives = left > 0 ? left : 0;
                     }
                 }
             }
