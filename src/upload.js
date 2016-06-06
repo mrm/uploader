@@ -70,7 +70,7 @@
                     <td>
                         <textarea className="form-control" rows="7" cols="40" onChange={this.onChangeContent} onBlur={this.onFocusLost}></textarea>
                         { this.shouldShowWarning() ? <div className="alert alert-warning" role="alert">It appears that you are uploading an HTML banner instead of Javascript, please change the content type to HTML.</div> : false}
-                        <span className="clicktrackinginfo">Use the macro <code>${'{CLICKURL}'}</code> to enable click tracking</span>
+                        <span className="clicktrackinginfo">Use the macro <code>${'{CLICK_URL}'}</code> or <code>${'{CLICK_URL_ENC}'}</code> to enable click tracking</span>
                     </td>
                     <td>&nbsp;</td>
                     <td>
@@ -122,7 +122,7 @@
                     </td>
                     <td>
                         <input className="form-control" type="text" defaultValue="http://" onChange={this.onChangeUrl} />
-                        <span className="clicktrackinginfo">Use the macro <code>${'{CLICKURL}'}</code> to enable click tracking</span>
+                        <span className="clicktrackinginfo">Use the macro <code>${'{CLICK_URL}'}</code> or <code>${'{CLICK_URL_ENC}'}</code> to enable click tracking</span>
                     </td>
                     <td>&nbsp;</td>
                     <td>
