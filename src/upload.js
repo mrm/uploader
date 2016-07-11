@@ -163,9 +163,8 @@
 
             if (this.props.data.state === 'invalid' && this.props.data.showErrors === true) {
                 return (
-                    <div className="form-group has-error has-feedback">
-                        <input ref="clickUrl" type="text" className="clickurl form-control default" aria-describedby="inputError" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl} />
-                        <em className="fa fa-exclamation-triangle form-control-feedback" aria-hidden="true"></em>
+                    <div className="form-group has-danger">
+                        <input ref="clickUrl" type="text" className="clickurl form-control form-control-danger" aria-describedby="inputError" defaultValue="http://" value={this.props.data.clickUrl} name="clickurl" onChange={this.onChangeClickUrl} />
                         <span id="inputError" className="sr-only">(error)</span>
                         { this.props.mopupAllowed != -1 ? <textarea ref="mopup" className="mopuptext form-control default" type="text" placeholder="Optional: place mopup text here, leave empty for regular banner campaign" value={this.props.data.mopup} name="mopup" onChange={this.onChangeMopupText} /> : '' }
                     </div>
@@ -236,8 +235,8 @@
                 }
             });
             return (
-                <div className="well">
-                    <table id="creatives" className="table nosort" cellSpacing="0">
+                <div className="table-responsive">
+                    <table id="creatives" className="table nosort">
                     <thead><tr><th>Preview</th><th>Filename / URL</th><th>Filesize</th><th>Dimensions</th><th>Click URL</th><th>Remove</th></tr></thead>
                     <tbody>
                     {creatives}
