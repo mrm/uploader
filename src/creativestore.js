@@ -273,7 +273,7 @@
             },
 
             isValidUrl: function (url) {
-		return (/^(https?:)?\/\/.+/.test(url);
+		return /^(https?:)?\/\/.+/.test(url);
             },
 
             isValidSize: function (size) {
