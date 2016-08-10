@@ -68,9 +68,12 @@ form.transport {
 display: none;
 }
 
+#uploaders {
+margin: -.25rem 0 .75rem;
+}
+
 #uploaders .btn {
-padding: 6px 12px;
-margin-right: .5em;
+margin: .25rem .4375rem .25rem 0;
 vertical-align: middle;
 position: relative; /* TODO: only for fileButton? */
 overflow: hidden; /* Required because input element overflows. No problem for IE6 since the .button elements are <a>s */
@@ -108,7 +111,7 @@ filter: alpha(opacity=0);
 }
 
 #creatives {
-margin-bottom: 1.12em;
+margin-bottom: 1rem;
 background-color: #fff;
 }
 
